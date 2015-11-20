@@ -1,3 +1,0 @@
-write a script that, given a step size for each parameters, run demo with differnt parameters and print the classification error
-save a trained rbm
-
