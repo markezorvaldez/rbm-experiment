@@ -6,20 +6,23 @@ bestError = inf;
 bestRBM = 0;
 matrixOfErrors = zeros(10,10);
 startLearning;
-
+n = 0;
 for nHid = hiddenUnits
     for lRate = learningRate
         [r, error] = demoBinaryRBM(nHid, ...
             lRate, ...
             numberEpochs, ...
             batchSize);
-        matrixOfErrors((nHid/100),(lRate*100)) = error;
+        [~, nHidIndex] = ismember(nHid, hiddenUnits);
+        [~, lRateIndex] = ismember(lRate, learningRate);
+        matrixOfErrors(nHidIndex,lRateIndex) = error;
         
         if error < bestError
             bestError = error;
             bestRBM = r;
         end
-            
+        
+        n = n+1
     end
 end
 
