@@ -1,3 +1,4 @@
+function r = demoBinaryRBM(numHid, lRate, nEpoch, batchSz)
 fprintf('\nHere we train an RBM with Binary inputs (CalTech silhouettes 28x28 datastet).\n');
 
 % LOAD DATASET
@@ -6,16 +7,16 @@ load('caltech101_silhouettes_28_split1.mat')
 
 [nObs,nVis] = size(train_data);
 
-nHid = 1000; % HIDDEN UNITS
+nHid = numHid; % ideal 1000
 
 % DEFINE A MODEL ARCHITECTURE
 arch = struct('size', [nVis,nHid], 'classifier',true, 'inputType','binary');
 
 % GLOBAL OPTIONS
 arch.opts = {'verbose', 1, ...
-		 'lRate', 0.1, ...
-		'nEpoch', 250, ...
-		'batchSz', 101, ...
+		 'lRate', lRate, ...      % ideal 0.1
+		'nEpoch', nEpoch, ...      % ideal 250
+		'batchSz', batchSz, ...     % ideal 101
 		'beginAnneal', 10, ...
 		'nGibbs', 1};
 %  		'visFun', @visBinaryRBMLearning};
