@@ -1,26 +1,27 @@
-hiddenUnits = [100 1000];
-learningRate = [0.01 0.1];
-numberEpochs = [100 250];
-batchSize = [100 500];
-bestParams = [0 0 0 0];
+hiddenUnits = (100:100:1000);
+learningRate = (0.01:0.01:0.1);
+numberEpochs = 100;
+batchSize = 101;
 bestError = inf;
-
-startLearning
+bestRBM = 0;
+matrixOfErrors = zeros(10,10);
+startLearning;
 
 for nHid = hiddenUnits
     for lRate = learningRate
-        for nEpoch = numberEpochs
-            for batchSz = batchSize
-                [nHid, lRate, nEpoch, batchSz]
-                [r, err] = demoBinaryRBM(nHid, lRate, nEpoch, batchSz);
-                
-                if err < error
-                    bestParams = [nHid, lRate, nEpoch, batchSz];
-                    error = err;
-                end
-            end
+        [r, error] = demoBinaryRBM(nHid, ...
+            lRate, ...
+            numberEpochs, ...
+            batchSize);
+        matrixOfErrors((nHid/100),(lRate*100)) = error;
+        
+        if error < bestError
+            bestError = error;
+            bestRBM = r;
         end
+            
     end
 end
 
-fprintf(bestParams)
+save('errorTable.mat', 'matrixOfErrors');
+save('bestRBM.mat', 'bestRBM');

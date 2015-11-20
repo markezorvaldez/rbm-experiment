@@ -1,3 +1,5 @@
+% Using the demoBinaryRBM MNIST.m from the METAL implementation
+% with a few changes
 function [r, classErr] = demoBinaryRBM(numHid, lRate, nEpoch, batchSz)
 fprintf('\nHere we train an RBM with Binary inputs (CalTech silhouettes 28x28 datastet).\n');
 
@@ -22,6 +24,8 @@ arch.opts = {'verbose', 1, ...
 %  		'visFun', @visBinaryRBMLearning};
 
 % INITIALIZE RBM
+
+
 r = rbm(arch);
 
 % TRAIN THE RBM
