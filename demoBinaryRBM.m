@@ -1,4 +1,4 @@
-function r = demoBinaryRBM(numHid, lRate, nEpoch, batchSz)
+function [r, classErr] = demoBinaryRBM(numHid, lRate, nEpoch, batchSz)
 fprintf('\nHere we train an RBM with Binary inputs (CalTech silhouettes 28x28 datastet).\n');
 
 % LOAD DATASET
