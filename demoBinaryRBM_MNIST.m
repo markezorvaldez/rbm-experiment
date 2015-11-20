@@ -1,12 +1,12 @@
-fprintf('\nHere we train an RBM with Binary inputs (MNIST datastet).\n');
+fprintf('\nHere we train an RBM with Binary inputs (CalTech silhouettes 28x28 datastet).\n');
 
 % LOAD DATASET
-load('/Users/mark/Desktop/medal-master/data/caltech101_silhouettes_28.mat');
-load('/Users/mark/Desktop/medal-master/data/caltech101_silhouettes_28_split1.mat')
+load('caltech101_silhouettes_28.mat');
+load('caltech101_silhouettes_28_split1.mat')
 
 [nObs,nVis] = size(train_data);
 
-nHid = 1000; % 500 HIDDEN UNITS
+nHid = 1000; % HIDDEN UNITS
 
 % DEFINE A MODEL ARCHITECTURE
 arch = struct('size', [nVis,nHid], 'classifier',true, 'inputType','binary');
